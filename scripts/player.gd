@@ -3,6 +3,7 @@ extends CharacterBody2D
 const SPEED = 300.0
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 
+
 func _physics_process(delta: float) -> void:
 	var x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	var y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
@@ -35,7 +36,13 @@ func _physics_process(delta: float) -> void:
 		anim.flip_h = false
 	else:
 		# parado: animação de idle (ou stop)
-		if anim.animation != "idle":
-			anim.play("idle")
+		if anim.animation == "front_walk":
+			anim.play("front_idle")
+			
+		elif anim.animation == "back_walk":
+			anim.play("back_idle")
+			
+		elif anim.animation == "side_walk":
+			anim.play("side_idle")
 
 	move_and_slide()

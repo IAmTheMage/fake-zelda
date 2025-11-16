@@ -1,7 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://cj5vd5qu2n0bo"]
+[gd_scene load_steps=3 format=3 uid="uid://cj5vd5qu2n0bo"]
 
 [ext_resource type="PackedScene" uid="uid://dkblj288eeokm" path="res://player.tscn" id="1_0f027"]
+[ext_resource type="PackedScene" uid="uid://calcgythgeexo" path="res://mob_1.tscn" id="2_2c62f"]
 
 [node name="MainScene" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_0f027")]
+
+[node name="Mob1" parent="." instance=ExtResource("2_2c62f")]

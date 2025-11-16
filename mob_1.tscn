@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://calcgythgeexo"]
+
+[ext_resource type="Texture2D" uid="uid://bnkiwbbrgy1ad" path="res://sprites/enemies/BowMoblinSideWalk.png" id="1_u54e6"]
+[ext_resource type="Script" uid="uid://357vlffmuluw" path="res://state_machine.gd" id="2_8w7hd"]
+[ext_resource type="Script" uid="uid://d27er87n4ukou" path="res://scripts/AI/Mob1/mob1_side.gd" id="3_rdqm6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8w7hd"]
+size = Vector2(332, 355)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdqm6"]
+atlas = ExtResource("1_u54e6")
+region = Rect2(0, 0, 416, 650)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8u4tx"]
+atlas = ExtResource("1_u54e6")
+region = Rect2(416, 0, 416, 650)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2773"]
+atlas = ExtResource("1_u54e6")
+region = Rect2(832, 0, 416, 650)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1j6v"]
+atlas = ExtResource("1_u54e6")
+region = Rect2(1248, 0, 416, 650)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n3sqp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rdqm6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8u4tx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2773")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1j6v")
+}],
+"loop": true,
+"name": &"side_walk",
+"speed": 5.0
+}]
+
+[node name="Mob1" type="Node2D"]
+position = Vector2(582, 292)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+scale = Vector2(0.25, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(-16, -36.5)
+shape = SubResource("RectangleShape2D_8w7hd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+sprite_frames = SubResource("SpriteFrames_n3sqp")
+animation = &"side_walk"
+frame = 2
+frame_progress = 0.57433045
+
+[node name="StateMachine" type="Node" parent="CharacterBody2D" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_8w7hd")
+initial_state = NodePath("../States/StateSideIdle")
+metadata/_custom_type_script = "uid://357vlffmuluw"
+
+[node name="States" type="Node" parent="CharacterBody2D"]
+
+[node name="StateSideIdle" type="Node" parent="CharacterBody2D/States" node_paths=PackedStringArray("anim", "mob")]
+script = ExtResource("3_rdqm6")
+anim = NodePath("../../AnimatedSprite2D")
+mob = NodePath("../..")
