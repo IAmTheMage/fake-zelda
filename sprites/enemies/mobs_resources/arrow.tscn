@@ -1,0 +1,132 @@
+[gd_scene load_steps=9 format=3 uid="uid://besihdjr1e3ox"]
+
+[ext_resource type="Texture2D" uid="uid://b7sf43r3ptyx5" path="res://sprites/enemies/BowMoblinArrow.png" id="1_lnahq"]
+[ext_resource type="Script" uid="uid://br2ew2ujksl0j" path="res://sprites/enemies/mobs_resources/arrow.gd" id="1_srlxa"]
+[ext_resource type="Texture2D" uid="uid://bwppi63tf6p4a" path="res://sprites/enemies/BowMoblinArrowAfterCollide.png" id="2_elo36"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_srlxa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqumd"]
+atlas = ExtResource("2_elo36")
+region = Rect2(0, 0, 195, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_to0js"]
+atlas = ExtResource("2_elo36")
+region = Rect2(0, 65, 195, 65)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_elo36"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqumd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_to0js")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqumd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_to0js")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqumd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_to0js")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqumd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_to0js")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqumd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_to0js")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqumd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_to0js")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqumd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_to0js")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqumd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_to0js")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqumd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_to0js")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqumd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_to0js")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqumd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_to0js")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqumd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_to0js")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqumd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_to0js")
+}],
+"loop": true,
+"name": &"collision",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_lnahq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_srlxa"]
+size = Vector2(204, 34)
+
+[node name="Arrow" type="CharacterBody2D" node_paths=PackedStringArray("anim")]
+scale = Vector2(0.25, 0.25)
+script = ExtResource("1_srlxa")
+anim = NodePath("AnimatedSprite2D")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_srlxa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_elo36")
+animation = &"collision"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_srlxa")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

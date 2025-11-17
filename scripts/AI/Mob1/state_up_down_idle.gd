@@ -1,34 +1,25 @@
 extends State
-class_name Mob1SideIdle
-
-@export var detector: Area2D;
+class_name Mob1UpDownWalking
 
 @export var MAX_DISTANCE: int = 400
 @export var anim: AnimatedSprite2D
 @export var mob: CharacterBody2D
 @export var SPEED: float = 150.0
 
-var counter: int = 1
+var counter: int = 1;
 
-var direction := 1
+var direction := -1
 var start_position := Vector2.ZERO
 
 func Enter():
 	anim.flip_h = true;
-	anim.play("side_walk")
+	anim.play("up_walk")
 	start_position = mob.global_position
-	detector.connect("detect", Callable(self, "_on_detect_player"))
-	
-func _on_detect_player(body):
-	if body.name == 'Player':
-		var global_player_pos = body.global_position
-		if global_player_pos.x < mob.global_position.x and direction < 0:
-			Transition.emit(self, "sideattack")
 
 func Physics_Update():
 	#print_debug("UPDATE");
 	# Movimento horizontal baseado na direção
-	var movement = Vector2(direction, 0)
+	var movement = Vector2(0, direction)
 
 	mob.velocity = movement * SPEED
 	mob.move_and_slide()
@@ -38,14 +29,15 @@ func Physics_Update():
 
 	# Quando atingir a distância máxima, inverte direção e redefine ponto inicial
 	if dist >= MAX_DISTANCE:
-		counter += 1
+		counter += 1;
 		direction *= -1
+		anim.play("down_walk")
 		start_position = mob.global_position
 		anim.flip_h = direction > 0   # Inverte o sprite se estiver indo para a esquerda
-		
+
 func Update():
 	if counter >= 3:
 		Transition.emit(self, 'decisionstate')
-		
+
 func Exit():
 	counter = 1;
