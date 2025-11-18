@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://calcgythgeexo"]
+[gd_scene load_steps=39 format=3 uid="uid://calcgythgeexo"]
 
 [ext_resource type="Texture2D" uid="uid://y4pld65tu1db" path="res://sprites/enemies/BowMoblinDownAttack.png" id="1_g3xwx"]
 [ext_resource type="Texture2D" uid="uid://bmu362udhuftw" path="res://sprites/enemies/BowMoblingWalkDown.png" id="1_n3sqp"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://byq8bew3xc6bh" path="res://scripts/AI/Mob1/up_attack.gd" id="11_cv47l"]
 [ext_resource type="Script" uid="uid://b8mubyjf80eqi" path="res://scripts/AI/Mob1/side_attack.gd" id="12_h5hcf"]
 [ext_resource type="PackedScene" uid="uid://besihdjr1e3ox" path="res://sprites/enemies/mobs_resources/arrow.tscn" id="13_x5fps"]
+[ext_resource type="Script" uid="uid://poh3edar1rj4" path="res://scripts/AI/Mob1/view_y_axis.gd" id="15_ljx8r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8w7hd"]
 size = Vector2(332, 355)
@@ -182,6 +183,9 @@ size = Vector2(1912, 248)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h5hcf"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5fps"]
+size = Vector2(328, 1412)
+
 [node name="Mob1" type="Node2D"]
 position = Vector2(582, 292)
 
@@ -254,6 +258,13 @@ position = Vector2(236, -52)
 shape = SubResource("RectangleShape2D_h5hcf")
 
 [node name="SideAttackTimer" type="Timer" parent="CharacterBody2D"]
+
+[node name="ViewYAxis" type="Area2D" parent="CharacterBody2D"]
+script = ExtResource("15_ljx8r")
+
+[node name="ViewYAxisCollision" type="CollisionShape2D" parent="CharacterBody2D/ViewYAxis"]
+position = Vector2(-16, -78)
+shape = SubResource("RectangleShape2D_x5fps")
 
 [connection signal="animation_finished" from="CharacterBody2D/AnimatedSprite2D" to="CharacterBody2D/States/SideAttack" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="CharacterBody2D/SideAttackTimer" to="CharacterBody2D/States/SideAttack" method="_on_side_attack_timer_timeout"]

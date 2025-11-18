@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var anim: AnimatedSprite2D;
+var direction = 1
 
 var SPEED = -150.0
 
@@ -9,8 +10,7 @@ func _ready() -> void:
 	anim.play("default")
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	velocity = Vector2(1, 0) * SPEED
+	velocity = Vector2(1, 0) * SPEED * direction
 
 	move_and_slide()
 
@@ -18,6 +18,7 @@ func _physics_process(delta: float) -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		anim.play("collision")
+		direction = 0
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
