@@ -1,0 +1,148 @@
+[gd_scene load_steps=21 format=3 uid="uid://ifw72vk1uduy"]
+
+[ext_resource type="Texture2D" uid="uid://bc68dwtwclr3" path="res://UI/Heart_pixelart_(transparent_background).svg (1) (1).png" id="1_8ebtg"]
+[ext_resource type="Texture2D" uid="uid://nbsx5tnf5vdu" path="res://UI/half_heart.png" id="2_7uxlw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7uxlw"]
+atlas = ExtResource("1_8ebtg")
+region = Rect2(0, 0, 360, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wor2y"]
+atlas = ExtResource("1_8ebtg")
+region = Rect2(360, 0, 360, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0qot"]
+atlas = ExtResource("1_8ebtg")
+region = Rect2(720, 0, 360, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgvu8"]
+atlas = ExtResource("1_8ebtg")
+region = Rect2(0, 360, 360, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fx55"]
+atlas = ExtResource("1_8ebtg")
+region = Rect2(360, 360, 360, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6j6f"]
+atlas = ExtResource("1_8ebtg")
+region = Rect2(720, 360, 360, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2bu0"]
+atlas = ExtResource("1_8ebtg")
+region = Rect2(0, 720, 360, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yeiyh"]
+atlas = ExtResource("1_8ebtg")
+region = Rect2(360, 720, 360, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_an6uf"]
+atlas = ExtResource("1_8ebtg")
+region = Rect2(720, 720, 360, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3ifk"]
+atlas = ExtResource("1_8ebtg")
+region = Rect2(0, 1080, 360, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xawie"]
+atlas = ExtResource("1_8ebtg")
+region = Rect2(360, 1080, 360, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4gkt"]
+atlas = ExtResource("2_7uxlw")
+region = Rect2(0, 0, 195, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_150tu"]
+atlas = ExtResource("2_7uxlw")
+region = Rect2(195, 0, 195, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0501"]
+atlas = ExtResource("2_7uxlw")
+region = Rect2(390, 0, 195, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rl1oi"]
+atlas = ExtResource("2_7uxlw")
+region = Rect2(0, 360, 195, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pw4k0"]
+atlas = ExtResource("2_7uxlw")
+region = Rect2(195, 360, 195, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74vxj"]
+atlas = ExtResource("1_8ebtg")
+region = Rect2(810, 1080, 270, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j4gkt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7uxlw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wor2y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0qot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgvu8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3fx55")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6j6f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2bu0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yeiyh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_an6uf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3ifk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xawie")
+}],
+"loop": true,
+"name": &"complete",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j4gkt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_150tu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0501")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rl1oi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pw4k0")
+}],
+"loop": true,
+"name": &"half",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74vxj")
+}],
+"loop": true,
+"name": &"inexistent",
+"speed": 5.0
+}]
+
+[node name="Life" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_j4gkt")
+animation = &"inexistent"

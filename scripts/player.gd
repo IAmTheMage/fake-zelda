@@ -2,8 +2,35 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+@onready var collision_area: Area2D = $DmgCollision;
+
+signal TakeDamage;
+
+func _ready() -> void:
+	collision_area.connect("area_entered", take_damage)
+
+func find_first_damage_obj(node: Node) -> DamageObj:
+	if node is DamageObj:
+		return node
+
+	for child in node.get_children():
+		var result = find_first_damage_obj(child)
+		if result:
+			return result
+
+	return null
 
 
+func take_damage(body) -> void:
+	var owner = body.get_owner()
+	if owner == null:
+		return
+
+	var damage_obj = find_first_damage_obj(owner)
+	if damage_obj:
+		TakeDamage.emit(damage_obj.damage)
+		
+		
 func _physics_process(delta: float) -> void:
 	var x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	var y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")

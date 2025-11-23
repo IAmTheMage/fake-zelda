@@ -198,7 +198,7 @@ shape = SubResource("RectangleShape2D_8w7hd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 sprite_frames = SubResource("SpriteFrames_n3sqp")
-animation = &"side_attack"
+animation = &"down_attack"
 
 [node name="StateMachine" type="Node" parent="CharacterBody2D" node_paths=PackedStringArray("initial_state", "StatesLocation")]
 script = ExtResource("2_8w7hd")
@@ -214,17 +214,23 @@ detector = NodePath("../../ViewXAxis")
 anim = NodePath("../../AnimatedSprite2D")
 mob = NodePath("../..")
 
-[node name="StateUpDownIdle" type="Node" parent="CharacterBody2D/States" node_paths=PackedStringArray("anim", "mob")]
+[node name="StateUpDownIdle" type="Node" parent="CharacterBody2D/States" node_paths=PackedStringArray("detector", "anim", "mob")]
 script = ExtResource("5_m2773")
+detector = NodePath("../../ViewYAxis")
 anim = NodePath("../../AnimatedSprite2D")
 mob = NodePath("../..")
 
 [node name="DecisionState" type="Node" parent="CharacterBody2D/States"]
 script = ExtResource("6_l1j6v")
 
-[node name="UpAttack" type="Node" parent="CharacterBody2D/States" node_paths=PackedStringArray("anim")]
+[node name="UpAttack" type="Node" parent="CharacterBody2D/States" node_paths=PackedStringArray("anim", "detector", "timer", "Mob", "UpSpawner")]
 script = ExtResource("11_cv47l")
 anim = NodePath("../../AnimatedSprite2D")
+detector = NodePath("../../ViewYAxis")
+timer = NodePath("../../UpAttackTimer")
+ArrowScene = ExtResource("13_x5fps")
+Mob = NodePath("../..")
+UpSpawner = NodePath("../../UpAttackSpawner")
 
 [node name="SideAttack" type="Node" parent="CharacterBody2D/States" node_paths=PackedStringArray("anim", "detector", "timer", "Mob", "LeftSpawner", "RightSpawner")]
 script = ExtResource("12_h5hcf")
@@ -265,6 +271,20 @@ script = ExtResource("15_ljx8r")
 [node name="ViewYAxisCollision" type="CollisionShape2D" parent="CharacterBody2D/ViewYAxis"]
 position = Vector2(-16, -78)
 shape = SubResource("RectangleShape2D_x5fps")
+
+[node name="DownAttackSpawner" type="Area2D" parent="CharacterBody2D"]
+position = Vector2(-20, 220)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/DownAttackSpawner"]
+shape = SubResource("RectangleShape2D_h5hcf")
+
+[node name="UpAttackSpawner" type="Area2D" parent="CharacterBody2D"]
+position = Vector2(-16, -272)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/UpAttackSpawner"]
+shape = SubResource("RectangleShape2D_h5hcf")
+
+[node name="UpAttackTimer" type="Timer" parent="CharacterBody2D"]
 
 [connection signal="animation_finished" from="CharacterBody2D/AnimatedSprite2D" to="CharacterBody2D/States/SideAttack" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="CharacterBody2D/SideAttackTimer" to="CharacterBody2D/States/SideAttack" method="_on_side_attack_timer_timeout"]

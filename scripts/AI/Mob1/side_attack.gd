@@ -21,12 +21,14 @@ func Enter():
 	
 
 func exit_area(body):
-	if anim.animation == 'side_attack':
-		anim.pause()
-		timer.stop()
-		Transition.emit(self, "statesideidle")
+	if body.name == "Player":
+		if anim.animation == 'side_attack':
+			anim.pause()
+			timer.stop()
+			Transition.emit(self, "statesideidle")
 
 func shoot():
+
 	var arrow = ArrowScene.instantiate()
 	arrow.scale = Vector2.ONE * 0.25;
 	arrow.global_position = LeftSpawner.global_position;

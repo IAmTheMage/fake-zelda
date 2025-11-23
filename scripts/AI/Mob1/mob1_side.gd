@@ -33,13 +33,13 @@ func _spawn_targets():
 	left_target.add_child(left_shape)
 
 	var left_icon := Sprite2D.new()
-	left_icon.texture = preload("res://scripts/AI/Mob1/icon.svg")
+	#left_icon.texture = preload("res://scripts/AI/Mob1/icon.svg")
 	left_icon.modulate = Color(1, 0, 0, 0.5)
 	left_icon.scale = Vector2(0.5, 0.5)
 	left_target.add_child(left_icon)
 
 	# spawn do left exatamente na posição do mob (conforme você descreveu)
-	left_target.global_position = mob.global_position
+	left_target.global_position = mob.global_position;
 
 
 	# RIGHT TARGET -----------------------------------
@@ -51,7 +51,7 @@ func _spawn_targets():
 	right_target.add_child(right_shape)
 
 	var right_icon := Sprite2D.new()
-	right_icon.texture = preload("res://scripts/AI/Mob1/icon.svg")
+	#right_icon.texture = preload("res://scripts/AI/Mob1/icon.svg")
 	right_icon.modulate = Color(0, 1, 0, 0.5)
 	right_icon.scale = Vector2(0.5, 0.5)
 	right_target.add_child(right_icon)
@@ -60,8 +60,8 @@ func _spawn_targets():
 
 
 	# Adiciona na cena
-	mob.get_parent().add_child(left_target)
-	mob.get_parent().add_child(right_target)
+	get_tree().current_scene.add_child(left_target)
+	get_tree().current_scene.add_child(right_target)
 
 
 func Enter():
