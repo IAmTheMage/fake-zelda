@@ -1,0 +1,116 @@
+[gd_scene load_steps=10 format=3 uid="uid://c3u4poamxar6k"]
+
+[ext_resource type="Texture2D" uid="uid://hrse3lox2msv" path="res://sprites/enemies/boss/BossEntry.png" id="1_62noy"]
+[ext_resource type="Script" uid="uid://dfulqqyyqk362" path="res://scripts/AI/BossEntry/boss_entry.gd" id="1_snhjs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gtlvp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snhjs"]
+atlas = ExtResource("1_62noy")
+region = Rect2(0, 0, 588, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uff56"]
+atlas = ExtResource("1_62noy")
+region = Rect2(0, 660, 588, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_re15n"]
+atlas = ExtResource("1_62noy")
+region = Rect2(0, 1320, 588, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxke6"]
+atlas = ExtResource("1_62noy")
+region = Rect2(0, 1980, 588, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yeu2m"]
+atlas = ExtResource("1_62noy")
+region = Rect2(0, 2640, 588, 660)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xp8ch"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snhjs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snhjs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snhjs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snhjs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uff56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uff56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uff56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uff56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uff56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_re15n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_re15n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_re15n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_re15n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_re15n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxke6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxke6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxke6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxke6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxke6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yeu2m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yeu2m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yeu2m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yeu2m")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}]
+
+[node name="Boss" type="CharacterBody2D"]
+script = ExtResource("1_snhjs")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gtlvp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_xp8ch")
+animation = &"idle"
+frame = 4
+frame_progress = 0.69203043
