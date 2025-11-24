@@ -106,7 +106,7 @@ func _on_detect_player(body):
 		# player abaixo e mob indo para baixo (direction > 0)
 		elif global_player_pos.y > mob.global_position.y and direction > 0:
 			#print_debug("ENCONTROU O PLAYER DOWN DOWN DOWN")
-			#Transition.emit(self, "sideattack")
+			Transition.emit(self, "downattack")
 			reset_counter = false
 
 

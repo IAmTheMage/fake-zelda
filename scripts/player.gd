@@ -22,6 +22,7 @@ func find_first_damage_obj(node: Node) -> DamageObj:
 
 
 func take_damage(body) -> void:
+	print_debug(body)
 	var owner = body.get_owner()
 	if owner == null:
 		return
@@ -29,7 +30,8 @@ func take_damage(body) -> void:
 	var damage_obj = find_first_damage_obj(owner)
 	if damage_obj:
 		TakeDamage.emit(damage_obj.damage)
-		
+	else:
+		print_debug(owner)
 		
 func _physics_process(delta: float) -> void:
 	var x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")

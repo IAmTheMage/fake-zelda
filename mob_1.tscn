@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://calcgythgeexo"]
+[gd_scene load_steps=40 format=3 uid="uid://calcgythgeexo"]
 
 [ext_resource type="Texture2D" uid="uid://y4pld65tu1db" path="res://sprites/enemies/BowMoblinDownAttack.png" id="1_g3xwx"]
 [ext_resource type="Texture2D" uid="uid://bmu362udhuftw" path="res://sprites/enemies/BowMoblingWalkDown.png" id="1_n3sqp"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://byq8bew3xc6bh" path="res://scripts/AI/Mob1/up_attack.gd" id="11_cv47l"]
 [ext_resource type="Script" uid="uid://b8mubyjf80eqi" path="res://scripts/AI/Mob1/side_attack.gd" id="12_h5hcf"]
 [ext_resource type="PackedScene" uid="uid://besihdjr1e3ox" path="res://sprites/enemies/mobs_resources/arrow.tscn" id="13_x5fps"]
+[ext_resource type="Script" uid="uid://b8mcicvjheo24" path="res://scripts/AI/Mob1/down_attack.gd" id="14_mjup3"]
 [ext_resource type="Script" uid="uid://poh3edar1rj4" path="res://scripts/AI/Mob1/view_y_axis.gd" id="15_ljx8r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8w7hd"]
@@ -242,6 +243,15 @@ Mob = NodePath("../..")
 LeftSpawner = NodePath("../../LeftAttackSpawner")
 RightSpawner = NodePath("../../RightAttackSpawner")
 
+[node name="DownAttack" type="Node" parent="CharacterBody2D/States" node_paths=PackedStringArray("anim", "detector", "timer", "Mob", "UpSpawner")]
+script = ExtResource("14_mjup3")
+anim = NodePath("../../AnimatedSprite2D")
+detector = NodePath("../../ViewYAxis")
+timer = NodePath("../../DownAttackTimer")
+ArrowScene = ExtResource("13_x5fps")
+Mob = NodePath("../..")
+UpSpawner = NodePath("../../DownAttackSpawner")
+
 [node name="ViewXAxis" type="Area2D" parent="CharacterBody2D"]
 scale = Vector2(4, 4)
 script = ExtResource("8_eln2t")
@@ -286,5 +296,8 @@ shape = SubResource("RectangleShape2D_h5hcf")
 
 [node name="UpAttackTimer" type="Timer" parent="CharacterBody2D"]
 
+[node name="DownAttackTimer" type="Timer" parent="CharacterBody2D"]
+
+[connection signal="animation_finished" from="CharacterBody2D/AnimatedSprite2D" to="CharacterBody2D/States/UpAttack" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="CharacterBody2D/AnimatedSprite2D" to="CharacterBody2D/States/SideAttack" method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="timeout" from="CharacterBody2D/SideAttackTimer" to="CharacterBody2D/States/SideAttack" method="_on_side_attack_timer_timeout"]
+[connection signal="animation_finished" from="CharacterBody2D/AnimatedSprite2D" to="CharacterBody2D/States/DownAttack" method="_on_animated_sprite_2d_animation_finished"]

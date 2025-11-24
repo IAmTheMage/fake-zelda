@@ -12,9 +12,12 @@ class_name Mob1SideAttack
 
 
 func Enter():
+	
 	anim.play("side_attack")
 	anim.sprite_frames.set_animation_loop("side_attack", false)
 	timer.wait_time = 1.0;
+	if not timer.is_connected("timeout", Callable(self, "_on_side_attack_timer_timeout")):
+		timer.connect("timeout", Callable(self, "_on_side_attack_timer_timeout"))
 	if not detector.is_connected("body_exited", exit_area):
 		detector.connect("body_exited", exit_area)
 	shoot()
@@ -22,6 +25,7 @@ func Enter():
 
 func exit_area(body):
 	if body.name == "Player":
+		
 		if anim.animation == 'side_attack':
 			anim.pause()
 			timer.stop()
@@ -48,6 +52,10 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 
 
 func _on_side_attack_timer_timeout() -> void:
+	print_debug("looop looop loooop")
 	if anim.animation == 'side_attack':
 		anim.play("side_attack")
 	shoot()
+	
+func Exit():
+	timer.disconnect("timeout", Callable(self, "_on_side_attack_timer_timeout"))

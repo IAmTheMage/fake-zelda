@@ -44,7 +44,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_srlxa"]
-size = Vector2(256, 25)
+size = Vector2(248, 68)
 
 [node name="Arrow" type="CharacterBody2D" node_paths=PackedStringArray("anim")]
 scale = Vector2(0.25, 0.25)
@@ -56,12 +56,11 @@ shape = SubResource("CapsuleShape2D_srlxa")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_elo36")
-animation = &"collision"
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -4.5)
+position = Vector2(4, -6)
 shape = SubResource("RectangleShape2D_srlxa")
 
 [node name="DamageObj" type="Node2D" parent="."]

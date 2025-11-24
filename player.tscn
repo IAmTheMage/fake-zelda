@@ -281,10 +281,10 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b26j0"]
 radius = 44.0
-height = 356.0
+height = 312.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1jxqw"]
-size = Vector2(200, 340)
+size = Vector2(200, 368)
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(402, 183)
@@ -303,5 +303,5 @@ shape = SubResource("CapsuleShape2D_b26j0")
 [node name="DmgCollision" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DmgCollision"]
-position = Vector2(-12, -2)
+position = Vector2(-12, 12)
 shape = SubResource("RectangleShape2D_1jxqw")
