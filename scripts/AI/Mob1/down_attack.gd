@@ -30,7 +30,7 @@ func exit_area(body):
 			anim.pause()
 			timer.stop()
 			# volta para o estado de idle vertical (ajuste o nome do estado se você usar outro)
-			Transition.emit(self, "mob1updownwalking")
+			Transition.emit(self, "stateupdownidle")
 
 
 func shoot():

@@ -212,12 +212,14 @@ metadata/_custom_type_script = "uid://357vlffmuluw"
 [node name="StateSideIdle" type="Node" parent="CharacterBody2D/States" node_paths=PackedStringArray("detector", "anim", "mob")]
 script = ExtResource("3_rdqm6")
 detector = NodePath("../../ViewXAxis")
+MAX_DISTANCE = 200
 anim = NodePath("../../AnimatedSprite2D")
 mob = NodePath("../..")
 
 [node name="StateUpDownIdle" type="Node" parent="CharacterBody2D/States" node_paths=PackedStringArray("detector", "anim", "mob")]
 script = ExtResource("5_m2773")
 detector = NodePath("../../ViewYAxis")
+MAX_DISTANCE = 200
 anim = NodePath("../../AnimatedSprite2D")
 mob = NodePath("../..")
 

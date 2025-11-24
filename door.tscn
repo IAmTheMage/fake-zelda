@@ -1,0 +1,93 @@
+[gd_scene load_steps=11 format=3 uid="uid://owqyhnccgta3"]
+
+[ext_resource type="Script" uid="uid://dr22luii58ud" path="res://door.gd" id="1_0phs7"]
+[ext_resource type="Texture2D" uid="uid://dyy42qelk82ng" path="res://maps/next_map_door/Free_Chicken_House.png" id="1_ba8gm"]
+[ext_resource type="Texture2D" uid="uid://cyyecuu1mllt8" path="res://maps/next_map_door/Doors.png" id="2_v6xrn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0phs7"]
+atlas = ExtResource("2_v6xrn")
+region = Rect2(0, 80, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6xrn"]
+atlas = ExtResource("2_v6xrn")
+region = Rect2(0, 160, 80, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_50cdl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0phs7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v6xrn")
+}],
+"loop": true,
+"name": &"opened",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0phs7"]
+radius = 19.026299
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0phs7"]
+size = Vector2(173, 172)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0phs7"]
+radius = 8.0
+height = 40.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_50cdl"]
+size = Vector2(49, 70)
+
+[node name="Door" type="Node2D" node_paths=PackedStringArray("collisions")]
+script = ExtResource("1_0phs7")
+collisions = NodePath("Collisions")
+
+[node name="DoorSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_ba8gm")
+
+[node name="DoorsSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, 97)
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_50cdl")
+animation = &"opened"
+frame_progress = 0.48829657
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 36)
+shape = SubResource("CircleShape2D_0phs7")
+
+[node name="Collisions" type="Node2D" parent="."]
+
+[node name="1" type="CharacterBody2D" parent="Collisions"]
+
+[node name="shape" type="CollisionShape2D" parent="Collisions/1"]
+position = Vector2(-0.5, -23)
+shape = SubResource("RectangleShape2D_0phs7")
+
+[node name="2" type="CharacterBody2D" parent="Collisions"]
+
+[node name="shape" type="CollisionShape2D" parent="Collisions/2"]
+position = Vector2(-55, 79)
+shape = SubResource("CapsuleShape2D_0phs7")
+
+[node name="3" type="CharacterBody2D" parent="Collisions"]
+
+[node name="shape" type="CollisionShape2D" parent="Collisions/3"]
+position = Vector2(55, 81)
+shape = SubResource("CapsuleShape2D_0phs7")
+
+[node name="4" type="CharacterBody2D" parent="Collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/4"]
+position = Vector2(-0.5, 86)
+shape = SubResource("RectangleShape2D_50cdl")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
