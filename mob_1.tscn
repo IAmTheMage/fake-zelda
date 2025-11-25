@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://calcgythgeexo"]
+[gd_scene load_steps=41 format=3 uid="uid://calcgythgeexo"]
 
 [ext_resource type="Texture2D" uid="uid://y4pld65tu1db" path="res://sprites/enemies/BowMoblinDownAttack.png" id="1_g3xwx"]
 [ext_resource type="Texture2D" uid="uid://bmu362udhuftw" path="res://sprites/enemies/BowMoblingWalkDown.png" id="1_n3sqp"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://besihdjr1e3ox" path="res://sprites/enemies/mobs_resources/arrow.tscn" id="13_x5fps"]
 [ext_resource type="Script" uid="uid://b8mcicvjheo24" path="res://scripts/AI/Mob1/down_attack.gd" id="14_mjup3"]
 [ext_resource type="Script" uid="uid://poh3edar1rj4" path="res://scripts/AI/Mob1/view_y_axis.gd" id="15_ljx8r"]
+[ext_resource type="Script" uid="uid://8rqdyv4kc6vh" path="res://life.gd" id="17_1ht1y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8w7hd"]
 size = Vector2(332, 355)
@@ -187,19 +188,25 @@ size = Vector2(1912, 248)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x5fps"]
 size = Vector2(328, 1412)
 
-[node name="Mob1" type="Node2D"]
+[node name="Mob1" type="Node2D" groups=["Enemies"]]
 position = Vector2(582, 292)
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 scale = Vector2(0.25, 0.25)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(-16, -36.5)
+shape = SubResource("RectangleShape2D_8w7hd")
+
+[node name="Area2D" type="Area2D" parent="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
 position = Vector2(-16, -36.5)
 shape = SubResource("RectangleShape2D_8w7hd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 sprite_frames = SubResource("SpriteFrames_n3sqp")
-animation = &"down_attack"
+animation = &"side_walk"
 
 [node name="StateMachine" type="Node" parent="CharacterBody2D" node_paths=PackedStringArray("initial_state", "StatesLocation")]
 script = ExtResource("2_8w7hd")
@@ -300,6 +307,16 @@ shape = SubResource("RectangleShape2D_h5hcf")
 
 [node name="DownAttackTimer" type="Timer" parent="CharacterBody2D"]
 
+[node name="Health" type="Node" parent="."]
+script = ExtResource("17_1ht1y")
+
+[node name="DamageCooldownTimer" type="Timer" parent="Health"]
+wait_time = 0.5
+
+[connection signal="area_entered" from="CharacterBody2D/Area2D" to="Health" method="_on_area_2d_area_entered"]
+[connection signal="area_shape_entered" from="CharacterBody2D/Area2D" to="Health" method="_on_area_2d_area_shape_entered"]
+[connection signal="body_entered" from="CharacterBody2D/Area2D" to="Health" method="_on_area_2d_body_entered"]
 [connection signal="animation_finished" from="CharacterBody2D/AnimatedSprite2D" to="CharacterBody2D/States/UpAttack" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="CharacterBody2D/AnimatedSprite2D" to="CharacterBody2D/States/SideAttack" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="CharacterBody2D/AnimatedSprite2D" to="CharacterBody2D/States/DownAttack" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="Health/DamageCooldownTimer" to="Health" method="_on_damage_cooldown_timer_timeout"]

@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://c3u4poamxar6k"]
+[gd_scene load_steps=17 format=3 uid="uid://c3u4poamxar6k"]
 
 [ext_resource type="Texture2D" uid="uid://hrse3lox2msv" path="res://sprites/enemies/boss/BossEntry.png" id="1_62noy"]
 [ext_resource type="Script" uid="uid://dfulqqyyqk362" path="res://scripts/AI/BossEntry/boss_entry.gd" id="1_snhjs"]
 [ext_resource type="PackedScene" uid="uid://br8f1egei2qv5" path="res://fire_ball.tscn" id="2_kxke6"]
 [ext_resource type="Texture2D" uid="uid://dui4p48k8rv4" path="res://sprites/enemies/boss/boss_active.png" id="2_re15n"]
 [ext_resource type="AudioStream" uid="uid://d34mxnqmd6jbr" path="res://sound/biodynamic-impact-braam-tonal-dark-176441.mp3" id="3_uff56"]
+[ext_resource type="Script" uid="uid://8rqdyv4kc6vh" path="res://life.gd" id="6_yeu2m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gtlvp"]
 
@@ -151,4 +152,12 @@ shape = SubResource("CircleShape2D_re15n")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.5
 
+[node name="Health" type="Node" parent="."]
+script = ExtResource("6_yeu2m")
+life = 10
+
+[node name="DamageCooldownTimer" type="Timer" parent="Health"]
+wait_time = 0.5
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Health/DamageCooldownTimer" to="Health" method="_on_damage_cooldown_timer_timeout"]

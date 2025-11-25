@@ -37,5 +37,5 @@ func _process(delta: float) -> void:
 	if num_mobs == 0:
 		$Door.allowed_to_pass = true
 		
-	if Input.is_action_just_pressed("ui_accept"): # ESPAÇO padrão da Godot
-		kill_random_mob()
+	#if Input.is_action_just_pressed("ui_accept"): # ESPAÇO padrão da Godot
+		#kill_random_mob()

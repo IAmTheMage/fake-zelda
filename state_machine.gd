@@ -44,6 +44,3 @@ func on_state_transition(state, new_state_name):
 		
 	current_state = new_state;
 	new_state.Enter();
-	
-
-	

@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=4 uid="uid://cwdohrlfs5xbf"]
 
 [ext_resource type="Texture2D" uid="uid://7ghq8njqwxhb" path="res://maps/Grass.png" id="1_3lf7l"]
-[ext_resource type="Script" uid="uid://doycowv75oxyx" path="res://map_3.gd" id="1_aca6x"]
+[ext_resource type="Script" path="res://map_3.gd" id="1_aca6x"]
 [ext_resource type="Texture2D" uid="uid://d4c6mqrywx2qh" path="res://maps/Basic Plants.png" id="2_aca6x"]
 [ext_resource type="PackedScene" uid="uid://calcgythgeexo" path="res://mob_1.tscn" id="4_i54f7"]
 [ext_resource type="PackedScene" uid="uid://cn1jupt71hfma" path="res://UI/health_ui.tscn" id="5_hkwdu"]

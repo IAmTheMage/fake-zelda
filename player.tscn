@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dkblj288eeokm"]
+[gd_scene load_steps=47 format=3 uid="uid://dkblj288eeokm"]
 
 [ext_resource type="Texture2D" uid="uid://dbfjarngc7l24" path="res://Front_idle.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://dqmw6jiuap3vj" path="res://scripts/player.gd" id="1_onrkg"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bf7r33m5c8gs5" path="res://Front_walk.png" id="5_b26j0"]
 [ext_resource type="Texture2D" uid="uid://su1mty56rhue" path="res://Side_idle.png" id="6_n7ghd"]
 [ext_resource type="Texture2D" uid="uid://b1hpvk3g5i0hh" path="res://Side_walk.png" id="7_nvl01"]
+[ext_resource type="Texture2D" uid="uid://v3v1xeq1v1iv" path="res://sprites/enemies/attack.png" id="8_dw050"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ivps1"]
 atlas = ExtResource("2_1jxqw")
@@ -286,6 +287,9 @@ height = 312.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1jxqw"]
 size = Vector2(200, 368)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b26j0"]
+size = Vector2(1311.0571, 1024)
+
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(402, 183)
 scale = Vector2(0.25, 0.25)
@@ -301,7 +305,33 @@ position = Vector2(-8, 4)
 shape = SubResource("CapsuleShape2D_b26j0")
 
 [node name="DmgCollision" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DmgCollision"]
 position = Vector2(-12, 12)
 shape = SubResource("RectangleShape2D_1jxqw")
+
+[node name="Attack" type="Area2D" parent="." groups=["Player"]]
+visible = false
+monitoring = false
+
+[node name="AttackHitBox" type="CollisionShape2D" parent="Attack"]
+position = Vector2(219.96643, 8)
+scale = Vector2(0.25, 0.25)
+shape = SubResource("RectangleShape2D_b26j0")
+
+[node name="Sprite2D" type="Sprite2D" parent="Attack/AttackHitBox"]
+texture_filter = 1
+position = Vector2(-6.7845306, -48.000137)
+scale = Vector2(40.537758, 29.999994)
+texture = ExtResource("8_dw050")
+
+[node name="AttackTimer" type="Timer" parent="Attack"]
+wait_time = 0.191
+
+[node name="CooldownTimer" type="Timer" parent="Attack"]
+wait_time = 0.47
+
+[connection signal="body_entered" from="Attack" to="." method="_on_attack_body_entered"]
+[connection signal="timeout" from="Attack/AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="Attack/CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

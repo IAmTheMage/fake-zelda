@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=4 uid="uid://d1ed0vba6kyro"]
 
-[ext_resource type="Script" uid="uid://c7e664qohi8ac" path="res://maps/map_4.gd" id="1_ne4r3"]
+[ext_resource type="Script" path="res://maps/map_4.gd" id="1_ne4r3"]
 [ext_resource type="Texture2D" uid="uid://7ghq8njqwxhb" path="res://maps/Grass.png" id="1_s1r48"]
 [ext_resource type="Texture2D" uid="uid://d4c6mqrywx2qh" path="res://maps/Basic Plants.png" id="2_ne4r3"]
 [ext_resource type="PackedScene" uid="uid://calcgythgeexo" path="res://mob_1.tscn" id="3_8f0rd"]
