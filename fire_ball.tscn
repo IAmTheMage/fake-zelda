@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://br8f1egei2qv5"]
+
+[ext_resource type="Texture2D" uid="uid://dui4p48k8rv4" path="res://sprites/enemies/boss/boss_active.png" id="1_73oji"]
+[ext_resource type="Script" uid="uid://dkv3o7aiawvai" path="res://fire_ball.gd" id="1_qsv8u"]
+[ext_resource type="Script" uid="uid://e3etxesatcs8" path="res://damage.gd" id="2_gregu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_er1ty"]
+radius = 12.165525
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_73oji"]
+radius = 18.110771
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gregu"]
+atlas = ExtResource("1_73oji")
+region = Rect2(380, 0, 190, 335)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_er1ty"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gregu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="FireBall" type="CharacterBody2D"]
+script = ExtResource("1_qsv8u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_er1ty")
+
+[node name="DamageArea" type="Area2D" parent="."]
+
+[node name="DamageShape" type="CollisionShape2D" parent="DamageArea"]
+shape = SubResource("CircleShape2D_73oji")
+
+[node name="Animation" type="AnimatedSprite2D" parent="."]
+position = Vector2(-6, -7)
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_er1ty")
+
+[node name="DamageObj" type="Node2D" parent="."]
+script = ExtResource("2_gregu")
+damage = 2
+metadata/_custom_type_script = "uid://e3etxesatcs8"
+
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

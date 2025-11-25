@@ -1,90 +1,55 @@
-[gd_scene load_steps=10 format=3 uid="uid://c3u4poamxar6k"]
+[gd_scene load_steps=16 format=3 uid="uid://c3u4poamxar6k"]
 
 [ext_resource type="Texture2D" uid="uid://hrse3lox2msv" path="res://sprites/enemies/boss/BossEntry.png" id="1_62noy"]
 [ext_resource type="Script" uid="uid://dfulqqyyqk362" path="res://scripts/AI/BossEntry/boss_entry.gd" id="1_snhjs"]
+[ext_resource type="PackedScene" uid="uid://br8f1egei2qv5" path="res://fire_ball.tscn" id="2_kxke6"]
+[ext_resource type="Texture2D" uid="uid://dui4p48k8rv4" path="res://sprites/enemies/boss/boss_active.png" id="2_re15n"]
+[ext_resource type="AudioStream" uid="uid://d34mxnqmd6jbr" path="res://sound/biodynamic-impact-braam-tonal-dark-176441.mp3" id="3_uff56"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gtlvp"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_snhjs"]
-atlas = ExtResource("1_62noy")
-region = Rect2(0, 0, 588, 660)
+[sub_resource type="AtlasTexture" id="AtlasTexture_xp8ch"]
+atlas = ExtResource("2_re15n")
+region = Rect2(190, 0, 190, 335)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uff56"]
-atlas = ExtResource("1_62noy")
-region = Rect2(0, 660, 588, 660)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_re15n"]
-atlas = ExtResource("1_62noy")
-region = Rect2(0, 1320, 588, 660)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kxke6"]
-atlas = ExtResource("1_62noy")
-region = Rect2(0, 1980, 588, 660)
+[sub_resource type="AtlasTexture" id="AtlasTexture_b01dt"]
+atlas = ExtResource("2_re15n")
+region = Rect2(0, 0, 190, 335)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yeu2m"]
 atlas = ExtResource("1_62noy")
 region = Rect2(0, 2640, 588, 660)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxke6"]
+atlas = ExtResource("1_62noy")
+region = Rect2(0, 1980, 588, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_re15n"]
+atlas = ExtResource("1_62noy")
+region = Rect2(0, 1320, 588, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uff56"]
+atlas = ExtResource("1_62noy")
+region = Rect2(0, 660, 588, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snhjs"]
+atlas = ExtResource("1_62noy")
+region = Rect2(0, 0, 588, 660)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_xp8ch"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_snhjs")
+"texture": SubResource("AtlasTexture_xp8ch")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_snhjs")
+"texture": SubResource("AtlasTexture_b01dt")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
 }, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_snhjs")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_snhjs")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uff56")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uff56")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uff56")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uff56")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uff56")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_re15n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_re15n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_re15n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_re15n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_re15n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kxke6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kxke6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kxke6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kxke6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kxke6")
-}, {
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yeu2m")
 }, {
@@ -96,14 +61,75 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yeu2m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxke6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxke6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxke6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxke6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxke6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_re15n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_re15n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_re15n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_re15n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_re15n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uff56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uff56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uff56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uff56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uff56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snhjs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snhjs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snhjs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snhjs")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 1.0
+"speed": 4.0
 }]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_re15n"]
+radius = 13.152946
 
 [node name="Boss" type="CharacterBody2D"]
 script = ExtResource("1_snhjs")
+fire_ball = ExtResource("2_kxke6")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_gtlvp")
@@ -112,5 +138,17 @@ shape = SubResource("RectangleShape2D_gtlvp")
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_xp8ch")
 animation = &"idle"
-frame = 4
-frame_progress = 0.69203043
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_uff56")
+
+[node name="FireBallPos" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="FireBallPos"]
+position = Vector2(0, 139)
+shape = SubResource("CircleShape2D_re15n")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.5
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
